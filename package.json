@@ -1,0 +1,34 @@
+{
+  "name": "backendiii-clases",
+  "version": "1.0.0",
+  "description": "Backend 3 de CoderHouse",
+  "keywords": [
+    "Backend",
+    "Coderhouse"
+  ],
+  "homepage": "https://github.com/gondev94/backendIII-clases#readme",
+  "bugs": {
+    "url": "https://github.com/gondev94/backendIII-clases/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gondev94/backendIII-clases.git"
+  },
+  "license": "MIT",
+  "author": "Gonzalo Peralta",
+  "type": "module",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js --env prod",
+    "dev": "nodemon app.js --env local"
+  },
+  "dependencies": {
+    "commander": "^14.0.3",
+    "dotenv": "^16.6.1",
+    "express": "^4.22.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.9"
+  }
+}
