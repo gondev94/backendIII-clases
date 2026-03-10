@@ -19,16 +19,21 @@
   "type": "module",
   "main": "app.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js --env prod",
-    "dev": "nodemon app.js --env local"
+    "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
+    "start": "node src/app.js --env prod",
+    "dev": "nodemon src/app.js --env local"
   },
   "dependencies": {
+    "@faker-js/faker": "^10.3.0",
     "commander": "^14.0.3",
     "dotenv": "^16.6.1",
-    "express": "^4.22.1"
+    "express": "^4.22.1",
+    "globals": "^17.4.0",
+    "jest": "^30.3.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "@jest/globals": "^29.7.0",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.2.2"
   }
 }
