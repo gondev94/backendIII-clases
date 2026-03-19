@@ -1,24 +1,23 @@
 import { faker } from "@faker-js/faker";
 
-
-export function generateFakeUsers(count , fakerClient = faker) {
+export function generateFakerUsers(count = 5, fakerClient = faker) {
     if (!Number.isInteger(count) || count < 0) {
-        throw new Error("count debe ser un número entero positivo");
+        throw new Error("count debe ser un entero mayor o igual a 0");
     }
 
     const users = [];
 
-    for (let i = 0; i < count; i++){
+    for (let i = 0; i < count; i++) {
         users.push({
-            // ID UNICO
+            // ID unico
             id: fakerClient.string.uuid(),
-            // NOMBRE
+            // Nombre completo
             name: fakerClient.person.fullName(),
-            // EMAIL
-            email: fakerClient.internet.email()
-            
+            // Email Random
+            email: fakerClient.internet.email(),
         });
     }
-    //devolvemos el array final
+
+    // Devolvemos el array final
     return users;
 }

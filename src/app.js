@@ -1,8 +1,6 @@
 import express from "express";
 import dotenv from "dotenv";
-import { generateFakeUsers as fkUser } from "./services/user.service.js";
-
-
+import { generateFakerUsers as fkuser } from "./services/user.service.js";
 
 dotenv.config();
 
@@ -12,36 +10,34 @@ const PORT = rawPort ? Number(rawPort) : 3000;
 
 
 if (Number.isNaN(PORT)) {
-    console.error(`PORT inválido en ${envFilePath}; "${rawPort}"`);
+    console.error(`PORT invalido: "${rawPort}"`);
 }
 
 app.use(express.json());
 
 app.get("/", (req, res) => {
-    res.status(200).send({
-        message: "Server is running",
+    res.status(200).json({
+        message: "Servidor funcionando correctamente",
         // PID de procesos
         pid: process.pid,
-    })
-})
+    });
+});
 
 app.get("/users", (req, res) => {
     try {
-        //si no viene USER_COUNT, se genera 5 usuarios
-        const count = Number(process.env.USER_COUNT) || 5;
+        // Si no viene USERS_COUNT, usamos por defecto 5.
+        const count = Number(process.env.USERS_COUNT || 5);
 
-        //generamos los usuarios
-        const users = fkUser(count)
+        // Generar N Usuarios en Memoria
+        const users = fkuser(count);
 
-        //respuesta exitosa
+        // Respuesta exitosa del Array de los usuarios
         res.status(200).json(users);
     } catch (error) {
         res.status(500).json({
-            error: error.message
-        })
+            error: error.message,
+        });
     }
-})
-
-app.listen(PORT, () => console.log(`Server is running on port ${PORT}`));
+});
 
 export default app;
