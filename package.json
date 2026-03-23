@@ -20,8 +20,8 @@
   "main": "app.js",
   "scripts": {
     "test": "node --experimental-vm-modules node_modules/jest/bin/jest.js",
-    "start": "node src/server.js --env prod",
-    "dev": "nodemon src/server.js --env local"
+    "start": "node app.js --env prod",
+    "dev": "nodemon app.js --env local"
   },
   "dependencies": {
     "@faker-js/faker": "^10.3.0",
@@ -30,7 +30,8 @@
     "dotenv": "^16.6.1",
     "express": "^4.22.1",
     "globals": "^17.4.0",
-    "jest": "^30.3.0"
+    "jest": "^30.3.0",
+    "winston": "^3.19.0"
   },
   "devDependencies": {
     "@jest/globals": "^29.7.0",

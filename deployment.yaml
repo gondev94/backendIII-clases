@@ -1,0 +1,54 @@
+# deployment para kubernetes
+# definir la cantidad de replicas que queremos corriendo
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: be3-77325-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: be3-77325-app
+  template:
+    metadata:
+      labels:
+        app: be3-77325-app
+    spec:
+      containers:
+        - name: be3-77325-app
+          image: tu-usuario/be3-77325:latest
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 3000
+          env:
+            - name: NODE_ENV
+              value: production
+            - name: PORT
+              value: "3000"
+            - name: LOG_LEVEL
+              value: info
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "128Mi"
+            limits:
+              cpu: "250m"
+              memory: "256Mi"
+
+---
+# creamos un service de kubernetes me permite exponer las replicas que yo haga dentro del cluster (seria ese pequeño espacio que me permite tener esa maquina virtual corriento dentro de ese cluster)
+#expone las replicas mediante una IP (lo hace mediante un balanceador de carga)
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: be3-77325-service
+spec:
+  selector:
+    app: be3-77325-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
+  type: ClusterIP

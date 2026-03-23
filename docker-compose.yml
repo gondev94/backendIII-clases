@@ -1,0 +1,17 @@
+services:
+  app:
+    container_name: be3_77325_app
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: be3_77325:latest
+    ports:
+      - "3000:3000"
+    environment:
+      NODE_ENV: production
+      PORT: 3000
+      LOG_LEVEL: info
+    volumes:
+      - ./src/logs:/app/src/logs
+    restart: unless-stopped
+    
